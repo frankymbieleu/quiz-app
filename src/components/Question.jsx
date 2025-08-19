@@ -17,18 +17,16 @@ export default function Question({ index, handleSkipAnswer, handleAnswer }) {
     timer = 2000;
   }
 
-  function handleAnswer(answer) {
-    setAnswer((prev) => ({
-      ...prev,
+  function handleSubmitAnswer(answer) {
+    setAnswer( {
       selectedAnswer: answer,
       isCorrect: null,
-    }));
+    });
     setTimeout(() => {
-      setAnswer((prev) => ({
-        ...prev,
+      setAnswer( {
         selectedAnswer: answer,
         isCorrect: QUESTIONS[index].answers[0] === answer,
-      }));
+      });
       setTimeout(() => {
         handleAnswer(answer);
       }, 2000);
@@ -54,7 +52,7 @@ export default function Question({ index, handleSkipAnswer, handleAnswer }) {
         answers={QUESTIONS[index].answers}
         selectedAnswer={answer.selectedAnswer}
         answerState={answerState}
-        handleAnswer={handleAnswer}
+        handleAnswer={handleSubmitAnswer}
       />
     </div>
   );
